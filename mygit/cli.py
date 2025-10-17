@@ -96,7 +96,12 @@ def write_tree(args):
 
 
 def read_tree(args):
-    hl_funcs.read_tree(args.tree)
+    # minimal change: just catch and report any error
+    try:
+        hl_funcs.read_tree(args.tree)
+    except Exception as e:
+        print(f"error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 def commit(args):
